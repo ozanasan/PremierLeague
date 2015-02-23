@@ -24,9 +24,9 @@ for team in teams:
 weeks.append(weekPoint)
 
 # this is for printing all weeks into console
-def printingWeek(point, played):
-	print " "
-	print "WEEK"
+def printingWeek(point, played, weekc):
+	print "WEEK %d" % weekc
+	print "-------"
 	ranking = 1
 	for element in sorted(weekPoint, key=weekPoint.get, reverse=True):
 		print "%d. %s %d played:%d" % (ranking, element, weekPoint[element], weekPlayed[element])
@@ -34,9 +34,7 @@ def printingWeek(point, played):
 
 # this calculates the week given
 def weekCalculations(week):
-	print "WEEK %d " % week
-	print "--------"
-	for match in matches[10*i - 10 : 10*i]:
+	for match in matches[10*week - 10 : 10*week]:
 		result = match[3]
 		home = int(result[0])
 		away = int(result[2])
@@ -52,7 +50,7 @@ def weekCalculations(week):
 			weekPoint[match[1]] = 1 + weekPoint[match[1]]
 			weekPoint[match[2]] = 1 + weekPoint[match[2]]
 	weeks.append(weekPoint)
-	printingWeek(weekPoint, weekPlayed)
+	printingWeek(weekPoint, weekPlayed, week)
 
 
 for i in range(1, 39):
